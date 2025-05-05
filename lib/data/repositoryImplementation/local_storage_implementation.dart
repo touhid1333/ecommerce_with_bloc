@@ -1,8 +1,8 @@
 import 'package:ecommerce_with_bloc/domain/local_storage.dart';
 import 'package:get_storage/get_storage.dart';
 
-class LocalStorageImpl extends LocalStorage {
-  LocalStorageImpl() {
+class LocalStorageImplementation extends LocalStorage {
+  LocalStorageImplementation() {
     getStorage = GetStorage();
   }
 

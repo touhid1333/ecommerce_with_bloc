@@ -7,7 +7,7 @@ part of 'base_response.dart';
 // **************************************************************************
 
 BaseResponse<T> _$BaseResponseFromJson<T>(
-  Map<String, dynamic> json,
+  Map json,
   T Function(Object? json) fromJsonT,
 ) =>
     BaseResponse<T>(
