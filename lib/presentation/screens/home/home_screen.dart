@@ -1,8 +1,11 @@
-import 'package:ecommerce_with_bloc/core/widgets/cut_rectangle_clipper.dart';
-import 'package:ecommerce_with_bloc/core/widgets/cut_rectangle_shape.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:ecommerce_with_bloc/core/extensions/extensions.dart';
 import 'package:ecommerce_with_bloc/core/widgets/decorated_scaffold.dart';
+import 'package:ecommerce_with_bloc/presentation/screens/home/widgets/product_list.dart';
 import 'package:flutter/material.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 
+@RoutePage()
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -11,45 +14,108 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  //https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
+    final screenHeight = MediaQuery.sizeOf(context).height;
     return DecoratedScaffold(
-      body: GridView.builder(
-        padding: EdgeInsets.all(20),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisExtent: 240,
-            mainAxisSpacing: 5,
-            crossAxisSpacing: 10),
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return CustomPaint(
-            painter: CutRectangleShape(index % 2 != 0),
-            child: SizedBox(
-              height: double.maxFinite,
-              width: double.maxFinite,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    ClipPath(
-                      clipper: CutRectangleClipper(index % 2 != 0),
-                      child: Image.network(
-                        "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-                        height: 120,
-                        width: double.maxFinite,
-                        fit: BoxFit.fitHeight,
-                      ),
-                    )
-                  ],
-                ),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          // -----------------------------------
+          // Default App bar
+          // -----------------------------------
+          SliverAppBar(
+            pinned: true,
+            toolbarHeight: kToolbarHeight,
+            automaticallyImplyLeading: false,
+            title: Text("Best Deals", style: theme.textTheme.headlineLarge),
+            actions: [const Icon(LucideIcons.shoppingCart).padAt(right: 20)],
+          ),
+
+          // -----------------------------------
+          // Search Bar
+          // -----------------------------------
+          SliverAppBar(
+            pinned: true,
+            automaticallyImplyLeading: false,
+            expandedHeight: 40,
+            toolbarHeight: 40,
+            flexibleSpace: TextFormField(
+              decoration: const InputDecoration(
+                hintText: "Search product",
+                prefixIcon: Icon(LucideIcons.search),
               ),
+            ).padAt(horizontal: 20),
+          ),
+
+          // -----------------------------------
+          // Banner Image
+          // -----------------------------------
+          SliverAppBar(
+            pinned: false,
+            automaticallyImplyLeading: false,
+            expandedHeight: screenHeight * .2,
+            toolbarHeight: screenHeight * .2,
+            flexibleSpace: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                "assets/images/deal_image.jpg",
+                fit: BoxFit.cover,
+              ),
+            ).padAt(horizontal: 20, vertical: 10),
+          ),
+
+          // -----------------------------------
+          // Categories
+          // -----------------------------------
+          SliverAppBar(
+            pinned: true,
+            automaticallyImplyLeading: false,
+            expandedHeight: 126,
+            toolbarHeight: 126,
+            flexibleSpace: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Categories", style: theme.textTheme.headlineSmall)
+                    .padAt(left: 20, right: 20, top: 10),
+                SizedBox(
+                  height: 80,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    itemCount: 12,
+                    itemExtent: 120,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        margin: EdgeInsets.only(right: 6),
+                        elevation: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              LucideIcons.mousePointerClick,
+                              size: 24,
+                              color: theme.colorScheme.onSurface,
+                            ).padAt(bottom: 4),
+                            Text(
+                              "Women's Jwellery",
+                              style: theme.textTheme.labelLarge,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ).padAt(top: 10),
+              ],
             ),
-          );
-        },
+          ),
+        ],
+        body: ProductList(),
       ),
     );
   }

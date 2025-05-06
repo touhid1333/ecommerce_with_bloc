@@ -8,12 +8,12 @@ class CutRectangleShape extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = const Color(0xFFFFFFFF)
+      ..color = const Color(0xFF000000)
       ..style = PaintingStyle.fill;
 
     final borderPaint = Paint()
       ..color = Colors.grey.shade200 // Border color
-      ..strokeWidth = 3.0    // Border thickness
+      ..strokeWidth = 1.0 // Border thickness
       ..style = PaintingStyle.stroke;
 
     const cornerRadius = 20.0;
@@ -47,8 +47,10 @@ class CutRectangleShape extends CustomPainter {
       ..quadraticBezierTo(0, 0, cornerRadius, 0)
       ..close();
 
-    canvas.drawPath(cutStartFrom == false ? cutPathFromLeft : cutPathFromRight, paint);
-    canvas.drawPath(cutStartFrom == false ? cutPathFromLeft : cutPathFromRight, borderPaint);
+    canvas.drawPath(
+        cutStartFrom == false ? cutPathFromLeft : cutPathFromRight, paint);
+    canvas.drawPath(cutStartFrom == false ? cutPathFromLeft : cutPathFromRight,
+        borderPaint);
   }
 
   @override

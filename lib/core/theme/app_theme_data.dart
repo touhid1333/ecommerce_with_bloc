@@ -9,7 +9,8 @@ class AppThemeData {
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
     cardTheme: CardTheme(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(9),
+        borderRadius: BorderRadius.circular(8),
+        side: const BorderSide(color: AppColors.hintColor, width: 1),
       ),
       color: AppColorSchemes.lightColorScheme.surface,
       margin: EdgeInsets.zero,
@@ -120,11 +121,11 @@ class AppThemeData {
 // --------------------------------------
   static final darkThemeData = ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: AppColors.darkScaffoldBackgroundColor,
+    scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
     cardTheme: CardTheme(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(9),
-      ),
+          borderRadius: BorderRadius.circular(8),
+          side: const BorderSide(color: AppColors.hintColor, width: 1)),
       color: AppColorSchemes.darkColorScheme.surface,
       margin: EdgeInsets.zero,
     ),
@@ -132,7 +133,7 @@ class AppThemeData {
     textTheme: AppTextThemes.darkTextTheme,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.darkScaffoldBackgroundColor,
+      backgroundColor: AppColors.scaffoldBackgroundColor,
       foregroundColor: AppColorSchemes.darkColorScheme.onSurface,
       elevation: 0,
       titleTextStyle: AppTextThemes.darkTextTheme.titleLarge?.copyWith(
