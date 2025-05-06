@@ -6,7 +6,7 @@ class AppThemeData {
 // --------------------------------------
   static final lightThemeData = ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: CupertinoColors.systemGrey6,
+    scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
     cardTheme: CardTheme(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(9),

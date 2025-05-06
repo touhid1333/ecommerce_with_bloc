@@ -1,13 +1,13 @@
 part of "theme.dart";
 
 class AppColors {
-  static const Color primaryColor = Color(0xFFF05A28);
-  static const Color secondaryColor = Color(0xFFD31D55);
+  static const Color primaryColor = Color(0xFF4E4AF2);
+  static const Color secondaryColor = Color(0xFF181C24);
   static const Color tertiaryColor = Color(0xFF4AC7EC);
   static const Color hintColor = Color(0xFF999999);
   static const Color errorColor = Color(0xFFcc3300);
   static const Color successColor = Color(0xFF339900);
-  static const Color scaffoldBackgroundColor = CupertinoColors.systemGrey6;
+  static const Color scaffoldBackgroundColor = Color(0xFF222834);
   static const Color darkScaffoldBackgroundColor = Colors.black45;
 }
 
