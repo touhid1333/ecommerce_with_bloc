@@ -1,5 +1,6 @@
 import 'package:ecommerce_with_bloc/app_config.dart';
 import 'package:ecommerce_with_bloc/core/services/custom_interceptor.dart';
+import 'package:ecommerce_with_bloc/data/local/hive_db.dart';
 import 'package:ecommerce_with_bloc/data/network/api_client.dart';
 import 'package:ecommerce_with_bloc/data/repositoryImplementation/auth_repository_implementation.dart';
 import 'package:ecommerce_with_bloc/data/local/local_storage_implementation.dart';
@@ -17,6 +18,8 @@ import 'package:dio/dio.dart' hide Headers;
 ///
 /// [LocalStorage]
 ///
+/// [HiveDB]
+///
 /// [ApiClient]
 ///
 /// [AuthRepository]
@@ -33,6 +36,8 @@ GetIt locator = GetIt.instance;
 ///
 /// [LocalStorage]
 ///
+/// [HiveDB]
+///
 /// [ApiClient]
 ///
 /// [AuthRepository]
@@ -44,6 +49,11 @@ Future<void> locatorServiceInit() async {
   // -----------------------------------
   locator
       .registerLazySingleton<LocalStorage>(() => LocalStorageImplementation());
+
+  // -----------------------------------
+  // hive db
+  // -----------------------------------
+  locator.registerLazySingleton<HiveDB>(() => HiveDB());
 
   // -----------------------------------
   // Rest Client

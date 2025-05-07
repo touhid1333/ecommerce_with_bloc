@@ -4,12 +4,14 @@ import 'package:ecommerce_with_bloc/presentation/blocs/home/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'core/theme/theme.dart';
 
 void main() async {
   await locatorServiceInit();
   await GetStorage.init();
+  await Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
