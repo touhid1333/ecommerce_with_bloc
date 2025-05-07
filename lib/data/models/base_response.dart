@@ -21,7 +21,16 @@ class BaseResponse<T> {
   dynamic errors;
   String? message;
 
-  factory BaseResponse.fromJson(Map<String, dynamic> json, Function(dynamic) create) {
+  factory BaseResponse.fromJson(dynamic json, Function(dynamic) create) {
+    if (json is List) {
+      return BaseResponse(
+        success: true,
+        code: 200,
+        response: json != null ? create(json) : null,
+        errors: '',
+        message: '',
+      );
+    }
     return BaseResponse(
       success: json['success'] ?? false,
       code: json['code'] ?? 501,

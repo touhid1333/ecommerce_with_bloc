@@ -11,11 +11,7 @@ class AuthRepositoryImplementation extends AuthRepository {
   AuthRepositoryImplementation(this._client);
 
   @override
-  Future<BaseResponse<LoginResponse>> loggingUser(
-      {required LoginRequest request}) async {
-    return _client
-        .logInUser(request)
-        .then((value) => value)
-        .onError(ErrorHandler.error);
+  Future<LoginResponse> loggingUser({required LoginRequest request}) async {
+    return _client.logInUser(request).then((value) => value);
   }
 }

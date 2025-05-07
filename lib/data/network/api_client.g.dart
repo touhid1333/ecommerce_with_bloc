@@ -22,13 +22,13 @@ class _ApiClient implements ApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BaseResponse<LoginResponse>> logInUser(LoginRequest request) async {
+  Future<LoginResponse> logInUser(LoginRequest request) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _options = _setStreamType<BaseResponse<LoginResponse>>(Options(
+    final _options = _setStreamType<LoginResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -45,12 +45,9 @@ class _ApiClient implements ApiClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResponse<LoginResponse> _value;
+    late LoginResponse _value;
     try {
-      _value = BaseResponse<LoginResponse>.fromJson(
-        _result.data!,
-        (json) => LoginResponse.fromJson(json as Map<String, dynamic>),
-      );
+      _value = LoginResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -59,12 +56,12 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<BaseResponse<List<ProductModel>>> fetchProducts() async {
+  Future<List<ProductModel>> fetchProducts() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResponse<List<ProductModel>>>(Options(
+    final _options = _setStreamType<List<ProductModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -80,18 +77,12 @@ class _ApiClient implements ApiClient {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResponse<List<ProductModel>> _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<ProductModel> _value;
     try {
-      _value = BaseResponse<List<ProductModel>>.fromJson(
-        _result.data!,
-        (json) => json is List<dynamic>
-            ? json
-                .map<ProductModel>(
-                    (i) => ProductModel.fromJson(i as Map<String, dynamic>))
-                .toList()
-            : List.empty(),
-      );
+      _value = _result.data!
+          .map((dynamic i) => ProductModel.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -100,12 +91,12 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<BaseResponse<List<String>>> fetchCategories() async {
+  Future<List<String>> fetchCategories() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResponse<List<String>>>(Options(
+    final _options = _setStreamType<List<String>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -121,15 +112,10 @@ class _ApiClient implements ApiClient {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResponse<List<String>> _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<String> _value;
     try {
-      _value = BaseResponse<List<String>>.fromJson(
-        _result.data!,
-        (json) => json is List<dynamic>
-            ? json.map<String>((i) => i as String).toList()
-            : List.empty(),
-      );
+      _value = _result.data!.cast<String>();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -138,13 +124,13 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<BaseResponse<List<ProductModel>>> fetchProductsByCategory(
+  Future<List<ProductModel>> fetchProductsByCategory(
       String categoryName) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResponse<List<ProductModel>>>(Options(
+    final _options = _setStreamType<List<ProductModel>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -160,18 +146,12 @@ class _ApiClient implements ApiClient {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResponse<List<ProductModel>> _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<ProductModel> _value;
     try {
-      _value = BaseResponse<List<ProductModel>>.fromJson(
-        _result.data!,
-        (json) => json is List<dynamic>
-            ? json
-                .map<ProductModel>(
-                    (i) => ProductModel.fromJson(i as Map<String, dynamic>))
-                .toList()
-            : List.empty(),
-      );
+      _value = _result.data!
+          .map((dynamic i) => ProductModel.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -180,12 +160,12 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<BaseResponse<ProductModel>> fetchProductById(int productId) async {
+  Future<ProductModel> fetchProductById(int productId) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResponse<ProductModel>>(Options(
+    final _options = _setStreamType<ProductModel>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -202,12 +182,9 @@ class _ApiClient implements ApiClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResponse<ProductModel> _value;
+    late ProductModel _value;
     try {
-      _value = BaseResponse<ProductModel>.fromJson(
-        _result.data!,
-        (json) => ProductModel.fromJson(json as Map<String, dynamic>),
-      );
+      _value = ProductModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

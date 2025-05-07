@@ -8,6 +8,6 @@ abstract class AuthRepository{
   /// Request : [LoginRequest]
   ///
   /// Response : [LoginResponse]
-  Future<BaseResponse<LoginResponse>> loggingUser(
+  Future<LoginResponse> loggingUser(
       {required LoginRequest request});
 }

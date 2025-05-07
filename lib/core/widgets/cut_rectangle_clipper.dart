@@ -15,8 +15,8 @@ class CutRectangleClipper extends CustomClipper<Path> {
       ..lineTo(size.width - cornerRadius, 0)
       ..quadraticBezierTo(size.width, 0, size.width, cornerRadius)
       ..lineTo(size.width, (size.height - cornerRadius))
-      ..quadraticBezierTo(size.width, (size.height),
-          (size.width - cornerRadius), (size.height))
+      ..quadraticBezierTo(
+          size.width, (size.height - cutSize), (size.width - cornerRadius), (size.height - cutSize))
       ..lineTo(cornerRadius, size.height)
       ..quadraticBezierTo(0, size.height, 0, (size.height - cornerRadius))
       ..lineTo(0, (cutSize + cornerRadius))
@@ -31,9 +31,8 @@ class CutRectangleClipper extends CustomClipper<Path> {
       ..lineTo(size.width, (size.height - cornerRadius))
       ..quadraticBezierTo(
           size.width, size.height, (size.width - cornerRadius), (size.height))
-      ..lineTo(cornerRadius, size.height)
-      ..quadraticBezierTo(
-          0, size.height, 0, (size.height - cornerRadius))
+      ..lineTo(cornerRadius, size.height - cutSize)
+      ..quadraticBezierTo(0, size.height - cutSize, 0, (size.height - cornerRadius - cutSize))
       ..lineTo(0, cornerRadius)
       ..quadraticBezierTo(0, 0, cornerRadius, 0)
       ..close();

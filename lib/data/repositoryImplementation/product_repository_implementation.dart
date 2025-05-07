@@ -8,27 +8,27 @@ class ProductRepositoryImplementation extends ProductRepository {
   ProductRepositoryImplementation(this._client);
 
   @override
-  Future<List<String>> fetchingCategories() {
-    return _client
-        .fetchCategories()
-        .then((value) => value.response ?? <String>[])
-        .onError((error, stackTrace) => <String>[]);
+  Future<List<String>> fetchingCategories() async {
+    return await _client.fetchCategories().then((value) {
+      print("*******************8 ${value}");
+      return value ?? <String>[];
+    }).onError((error, stackTrace) => <String>[]);
   }
 
   @override
   Future<ProductModel?> fetchingProductById({required int productId}) {
-    return _client
-        .fetchProductById(productId)
-        .then((value) => value.response)
-        .onError((error, stackTrace) => null);
+    return _client.fetchProductById(productId).then((value) => value);
   }
 
   @override
-  Future<List<ProductModel>> fetchingProducts() {
-    return _client
+  Future<List<ProductModel>> fetchingProducts() async {
+    return await _client
         .fetchProducts()
-        .then((value) => value.response ?? <ProductModel>[])
-        .onError((error, stackTrace) => <ProductModel>[]);
+        .then((value) => value ?? <ProductModel>[])
+        .onError((error, stackTrace) {
+      print("*******************8 ${error} ********** $stackTrace");
+      return <ProductModel>[];
+    });
   }
 
   @override
@@ -36,7 +36,7 @@ class ProductRepositoryImplementation extends ProductRepository {
       {required String categoryName}) {
     return _client
         .fetchProductsByCategory(categoryName)
-        .then((value) => value.response ?? <ProductModel>[])
+        .then((value) => value ?? <ProductModel>[])
         .onError((error, stackTrace) => <ProductModel>[]);
   }
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:dio/dio.dart';
-import 'package:ecommerce_with_bloc/domain/local_storage.dart';
+import 'package:ecommerce_with_bloc/data/local/local_storage.dart';
 
 class CustomInterceptors extends InterceptorsWrapper {
   CustomInterceptors({
