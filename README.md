@@ -7,7 +7,7 @@ maintain clean architecture.
 
 Here’s an overview of the folder structure:
 
-![Project Directory Structure](assets/readmeImages/project_structure.png)
+<img src="assets/readmeImages/project_structure.png" alt="Project Directory Structure" width="300"/>
 
 ## Overview
 
