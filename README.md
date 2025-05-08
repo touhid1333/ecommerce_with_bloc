@@ -13,4 +13,4 @@ Here’s an overview of the folder structure:
 
 Here’s an overview of the UI:
 
-![Design Overview](assets/readmeImages/home-ui.jpg) 
+<img src="assets/readmeImages/home-ui.jpg" alt="Design Overview" width="400"/>
