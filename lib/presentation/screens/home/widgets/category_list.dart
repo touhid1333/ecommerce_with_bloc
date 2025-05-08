@@ -17,30 +17,32 @@ class _CategoryListState extends State<CategoryList> {
   Widget build(BuildContext context) {
     final theme = context.theme;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Categories", style: theme.textTheme.headlineSmall)
-            .padAt(left: 20, right: 20, top: 10),
-        SizedBox(
-          height: 80,
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            itemCount: widget.categories.length,
-            itemExtent: 140,
-            itemBuilder: (context, index) {
-              var item = widget.categories[index];
+    return widget.categories.isEmpty
+        ? const SizedBox.shrink()
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Categories", style: theme.textTheme.headlineSmall)
+                  .padAt(left: 20, right: 20, top: 10),
+              SizedBox(
+                height: 80,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: widget.categories.length,
+                  itemExtent: 140,
+                  itemBuilder: (context, index) {
+                    var item = widget.categories[index];
 
-              return CategoryListItem(
-                category: item,
-                index: index,
-              );
-            },
-          ),
-        ).padAt(top: 10),
-      ],
-    );
+                    return CategoryListItem(
+                      category: item,
+                      index: index,
+                    );
+                  },
+                ),
+              ).padAt(top: 10),
+            ],
+          );
   }
 }

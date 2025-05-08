@@ -17,56 +17,59 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Grab Now",
-          style: theme.textTheme.headlineSmall,
-        ).padAt(left: 20, right: 20, top: 20),
-
-        // -----------------------------------
-        // Product Grid
-        // -----------------------------------
-        Expanded(
-          child: GridView.builder(
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisExtent: 220,
-                mainAxisSpacing: 5,
-                crossAxisSpacing: 10),
-            itemCount: widget.products.length,
-            itemBuilder: (context, index) {
-              final item = widget.products[index];
+    return widget.products.isEmpty
+        ? const SizedBox.shrink()
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Grab Now",
+                style: theme.textTheme.headlineSmall,
+              ).padAt(left: 20, right: 20, top: 20),
 
               // -----------------------------------
-              // Item View
+              // Product Grid
               // -----------------------------------
-              return TweenAnimationBuilder(
-                duration: const Duration(milliseconds: 400),
-                tween: Tween(begin: 0.0, end: 1.0),
-                curve: Curves.easeIn,
-                builder: (context, value, child) {
-                  return Opacity(
-                    opacity: value,
-                    child: Transform.scale(
-                      scale: value,
-                      child: child,
-                    ),
-                  );
-                },
-                child: ProductListItem(
-                  index: index,
-                  product: item,
-                  addingIndex: widget.addingIndex,
+              Expanded(
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisExtent: 220,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 10),
+                  itemCount: widget.products.length,
+                  itemBuilder: (context, index) {
+                    final item = widget.products[index];
+
+                    // -----------------------------------
+                    // Item View
+                    // -----------------------------------
+                    return TweenAnimationBuilder(
+                      duration: const Duration(milliseconds: 400),
+                      tween: Tween(begin: 0.0, end: 1.0),
+                      curve: Curves.easeIn,
+                      builder: (context, value, child) {
+                        return Opacity(
+                          opacity: value,
+                          child: Transform.scale(
+                            scale: value,
+                            child: child,
+                          ),
+                        );
+                      },
+                      child: ProductListItem(
+                        index: index,
+                        product: item,
+                        addingIndex: widget.addingIndex,
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-        ),
-      ],
-    );
+              ),
+            ],
+          );
   }
 }
