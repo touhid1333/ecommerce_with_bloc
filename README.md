@@ -1,16 +1,16 @@
-# ecommerce_with_bloc
+# Ecommerce With Bloc
 
-The project deals with Bloc learning path where freezed will be use for modeling and will try to maintain clean architecture.
+The project deals with Bloc learning path where freezed will be use for modeling and will try to
+maintain clean architecture.
 
-## Getting Started
+## Project Structure
 
-This project is a starting point for a Flutter application.
+Here’s an overview of the folder structure:
 
-A few resources to get you started if this is your first Flutter project:
+![Project Directory Structure](assets/readmeImages/project_structure.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Overview
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Here’s an overview of the UI:
+
+![Design Overview](assets/readmeImages/home-ui.jpg) 
