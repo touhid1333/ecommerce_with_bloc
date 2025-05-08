@@ -45,7 +45,7 @@ class _ProductListState extends State<ProductList> {
               // Item View
               // -----------------------------------
               return TweenAnimationBuilder(
-                duration: const Duration(milliseconds: 800),
+                duration: const Duration(milliseconds: 400),
                 tween: Tween(begin: 0.0, end: 1.0),
                 curve: Curves.easeIn,
                 builder: (context, value, child) {
