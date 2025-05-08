@@ -4,9 +4,11 @@ import 'package:ecommerce_with_bloc/data/local/hive_db.dart';
 import 'package:ecommerce_with_bloc/data/network/api_client.dart';
 import 'package:ecommerce_with_bloc/data/repositoryImplementation/auth_repository_implementation.dart';
 import 'package:ecommerce_with_bloc/data/local/local_storage_implementation.dart';
+import 'package:ecommerce_with_bloc/data/repositoryImplementation/cart_repository_implementation.dart';
 import 'package:ecommerce_with_bloc/data/repositoryImplementation/product_repository_implementation.dart';
 import 'package:ecommerce_with_bloc/domain/auth_repository.dart';
 import 'package:ecommerce_with_bloc/data/local/local_storage.dart';
+import 'package:ecommerce_with_bloc/domain/cart_repository.dart';
 import 'package:ecommerce_with_bloc/domain/product_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart' hide Headers;
@@ -25,6 +27,8 @@ import 'package:dio/dio.dart' hide Headers;
 /// [AuthRepository]
 ///
 /// [ProductRepository]
+///
+/// [CartRepository]
 GetIt locator = GetIt.instance;
 
 ///
@@ -43,6 +47,8 @@ GetIt locator = GetIt.instance;
 /// [AuthRepository]
 ///
 /// [ProductRepository]
+///
+/// [CartRepository]
 Future<void> locatorServiceInit() async {
   // -----------------------------------
   // local storage
@@ -85,4 +91,10 @@ Future<void> locatorServiceInit() async {
   // -----------------------------------
   locator.registerLazySingleton<ProductRepository>(
       () => ProductRepositoryImplementation(locator.get()));
+
+  // -----------------------------------
+  // cart repo
+  // -----------------------------------
+  locator.registerLazySingleton<CartRepository>(
+      () => CartRepositoryImplementation(locator.get()));
 }

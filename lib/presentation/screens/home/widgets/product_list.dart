@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class ProductList extends StatefulWidget {
   final List<ProductModel> products;
+  final int? addingIndex;
 
-  const ProductList({super.key, required this.products});
+  const ProductList({super.key, required this.products, this.addingIndex});
 
   @override
   State<ProductList> createState() => _ProductListState();
@@ -59,6 +60,7 @@ class _ProductListState extends State<ProductList> {
                 child: ProductListItem(
                   index: index,
                   product: item,
+                  addingIndex: widget.addingIndex,
                 ),
               );
             },

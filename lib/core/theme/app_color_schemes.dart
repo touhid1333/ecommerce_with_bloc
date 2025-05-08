@@ -4,7 +4,7 @@ class AppColors {
   static const Color primaryColor = Color(0xFF4E4AF2);
   static const Color secondaryColor = Color(0xFF181C24);
   static const Color hintColor = Color(0xFF999999);
-  static const Color errorColor = Color(0xFFcc3300);
+  static const Color errorColor = Colors.redAccent;
   static const Color successColor = Color(0xFF339900);
   static const Color scaffoldBackgroundColor = Color(0xFF222834);
 }

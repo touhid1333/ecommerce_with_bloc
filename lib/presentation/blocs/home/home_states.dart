@@ -12,5 +12,6 @@ class HomeStates with _$HomeStates {
   const factory HomeStates.loaded({
     required List<String> categories,
     required List<ProductModel> products,
+    int? addToCartIndex,
   }) = _Loaded;
 }

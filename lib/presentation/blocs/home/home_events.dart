@@ -11,4 +11,6 @@ class HomeEvents with _$HomeEvents {
   /// State Values Will be List<[String]> as categories and List<[ProductModel]> as products
   ///
   const factory HomeEvents.fetchInitialData() = FetchInitialData;
+
+  const factory HomeEvents.addToCart({required int index, required ProductModel product}) = AddToCart;
 }

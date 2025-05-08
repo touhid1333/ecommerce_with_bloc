@@ -19,32 +19,38 @@ mixin _$HomeEvents {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchInitialData,
+    required TResult Function(int index, ProductModel product) addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchInitialData,
+    TResult? Function(int index, ProductModel product)? addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchInitialData,
+    TResult Function(int index, ProductModel product)? addToCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchInitialData value) fetchInitialData,
+    required TResult Function(AddToCart value) addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchInitialData value)? fetchInitialData,
+    TResult? Function(AddToCart value)? addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchInitialData value)? fetchInitialData,
+    TResult Function(AddToCart value)? addToCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +119,7 @@ class _$FetchInitialDataImpl implements FetchInitialData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchInitialData,
+    required TResult Function(int index, ProductModel product) addToCart,
   }) {
     return fetchInitialData();
   }
@@ -121,6 +128,7 @@ class _$FetchInitialDataImpl implements FetchInitialData {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetchInitialData,
+    TResult? Function(int index, ProductModel product)? addToCart,
   }) {
     return fetchInitialData?.call();
   }
@@ -129,6 +137,7 @@ class _$FetchInitialDataImpl implements FetchInitialData {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchInitialData,
+    TResult Function(int index, ProductModel product)? addToCart,
     required TResult orElse(),
   }) {
     if (fetchInitialData != null) {
@@ -141,6 +150,7 @@ class _$FetchInitialDataImpl implements FetchInitialData {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchInitialData value) fetchInitialData,
+    required TResult Function(AddToCart value) addToCart,
   }) {
     return fetchInitialData(this);
   }
@@ -149,6 +159,7 @@ class _$FetchInitialDataImpl implements FetchInitialData {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(FetchInitialData value)? fetchInitialData,
+    TResult? Function(AddToCart value)? addToCart,
   }) {
     return fetchInitialData?.call(this);
   }
@@ -157,6 +168,7 @@ class _$FetchInitialDataImpl implements FetchInitialData {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchInitialData value)? fetchInitialData,
+    TResult Function(AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (fetchInitialData != null) {
@@ -168,4 +180,155 @@ class _$FetchInitialDataImpl implements FetchInitialData {
 
 abstract class FetchInitialData implements HomeEvents {
   const factory FetchInitialData() = _$FetchInitialDataImpl;
+}
+
+/// @nodoc
+abstract class _$$AddToCartImplCopyWith<$Res> {
+  factory _$$AddToCartImplCopyWith(
+          _$AddToCartImpl value, $Res Function(_$AddToCartImpl) then) =
+      __$$AddToCartImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index, ProductModel product});
+}
+
+/// @nodoc
+class __$$AddToCartImplCopyWithImpl<$Res>
+    extends _$HomeEventsCopyWithImpl<$Res, _$AddToCartImpl>
+    implements _$$AddToCartImplCopyWith<$Res> {
+  __$$AddToCartImplCopyWithImpl(
+      _$AddToCartImpl _value, $Res Function(_$AddToCartImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of HomeEvents
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+    Object? product = null,
+  }) {
+    return _then(_$AddToCartImpl(
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddToCartImpl implements AddToCart {
+  const _$AddToCartImpl({required this.index, required this.product});
+
+  @override
+  final int index;
+  @override
+  final ProductModel product;
+
+  @override
+  String toString() {
+    return 'HomeEvents.addToCart(index: $index, product: $product)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddToCartImpl &&
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.product, product) || other.product == product));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index, product);
+
+  /// Create a copy of HomeEvents
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
+      __$$AddToCartImplCopyWithImpl<_$AddToCartImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchInitialData,
+    required TResult Function(int index, ProductModel product) addToCart,
+  }) {
+    return addToCart(index, product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetchInitialData,
+    TResult? Function(int index, ProductModel product)? addToCart,
+  }) {
+    return addToCart?.call(index, product);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchInitialData,
+    TResult Function(int index, ProductModel product)? addToCart,
+    required TResult orElse(),
+  }) {
+    if (addToCart != null) {
+      return addToCart(index, product);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchInitialData value) fetchInitialData,
+    required TResult Function(AddToCart value) addToCart,
+  }) {
+    return addToCart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FetchInitialData value)? fetchInitialData,
+    TResult? Function(AddToCart value)? addToCart,
+  }) {
+    return addToCart?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchInitialData value)? fetchInitialData,
+    TResult Function(AddToCart value)? addToCart,
+    required TResult orElse(),
+  }) {
+    if (addToCart != null) {
+      return addToCart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddToCart implements HomeEvents {
+  const factory AddToCart(
+      {required final int index,
+      required final ProductModel product}) = _$AddToCartImpl;
+
+  int get index;
+  ProductModel get product;
+
+  /// Create a copy of HomeEvents
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

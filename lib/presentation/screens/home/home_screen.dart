@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:ecommerce_with_bloc/core/extensions/extensions.dart';
+import 'package:ecommerce_with_bloc/core/routes/app_route.dart';
 import 'package:ecommerce_with_bloc/presentation/blocs/home/home_bloc.dart';
 import 'package:ecommerce_with_bloc/presentation/blocs/home/home_events.dart';
 import 'package:ecommerce_with_bloc/presentation/blocs/home/home_states.dart';
@@ -18,12 +19,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // -----------------------------------
+  // Functions
+  // -----------------------------------
+  void _onCartTap() {
+    context.router.pushNamed(AppRouter.cart);
+  }
+
+  // -----------------------------------
+  // Init State
+  // -----------------------------------
   @override
   void initState() {
     context.read<HomeBloc>().add(const FetchInitialData());
     super.initState();
   }
 
+  // -----------------------------------
+  // Build
+  // -----------------------------------
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
@@ -48,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // -----------------------------------
               // Loaded State
               // -----------------------------------
-              loaded: (categories, products) => NestedScrollView(
+              loaded: (categories, products, addingIndex) => NestedScrollView(
                 headerSliverBuilder: (context, innerBoxIsScrolled) => [
                   // -----------------------------------
                   // Default App bar
@@ -60,7 +74,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     title: Text("Best Deals",
                         style: theme.textTheme.headlineLarge),
                     actions: [
-                      const Icon(LucideIcons.shoppingCart).padAt(right: 20)
+                      // -----------------------------------
+                      // Cart Button
+                      // -----------------------------------
+                      InkWell(
+                        onTap: _onCartTap,
+                        borderRadius: BorderRadius.circular(kToolbarHeight),
+                        child: const Padding(
+                          padding: EdgeInsets.all(4),
+                          child: Icon(
+                            LucideIcons.shoppingCart,
+                          ),
+                        ),
+                      ).padAt(right: 16)
                     ],
                   ),
 
@@ -90,9 +116,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     toolbarHeight: screenHeight * .2,
                     flexibleSpace: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        "assets/images/deal_image.jpg",
-                        fit: BoxFit.cover,
+                      child: Container(
+                        color: theme.colorScheme.onSurface,
+                        height: double.maxFinite,
+                        width: double.maxFinite,
+                        child: Image.asset(
+                          "assets/images/deal_image.jpg",
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ).padAt(horizontal: 20, vertical: 10),
                   ),
@@ -114,6 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // -----------------------------------
                 body: ProductList(
                   products: products,
+                  addingIndex: addingIndex,
                 ),
               ),
             );
